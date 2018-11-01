@@ -80,5 +80,19 @@ TEST(array,buy_and_sell_stock_once_test) {
   }
 }
 
+TEST(array,buy_and_sell_stock_twice_test) {
+  using testcase = ::std::pair<::std::vector<double>, double>;
+  ::std::vector<testcase> testcases = {
+    {{},0.0},
+    {{0.0},0.0},
+    {{10.0},0.0},
+    {{20.0,10.0},0.0},
+    {{12.0,11.0,13.0,9.0,12.0,8.0,14.0,13.0,15.0},10.0}
+  };
+  for (auto &[a, r] : testcases) {
+    ASSERT_EQ(r, array::buy_and_sell_stock_twice(a));
+  }
+}
+
 } // tests
 } // algorithms

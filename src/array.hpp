@@ -89,6 +89,15 @@ int delete_dupes(::std::vector<int> *vp);
  */
 double buy_and_sell_stock_once(const ::std::vector<double> &v);
 
+/**
+ * Given an array v of n elements of type double,
+ * denoting the daily stock price,
+ * return the maximum profit that could be made 
+ * by buying and then selling one share of that stock at most twice.
+ * Runtime complexity : O(n)
+ */
+double buy_and_sell_stock_twice(const ::std::vector<double> &v);
+
 } // array
 } // algorithms
 

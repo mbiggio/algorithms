@@ -63,8 +63,8 @@ int can_reach_end(const ::std::vector<int> &a) {
   for (int i=0; i<=b && b<a.size()-1 && i<a.size(); ++i) {
     for (int j=b+1; j <= ::std::min((int)(s.size()-1),i+a[i]); ++j) 
       /**
-       * as soon as i discover a new element j to be within the new boundary,
-       * I can set the minimum number of steps 
+       * as soon as we discover a new element j to be within the new boundary,
+       * we can set the minimum number of steps 
        * necessary to reach that element to s[i]+1,
        * where i is the minimum index from which index j is reachable.
        * Indeed, for each k<i, j is not reachable,
@@ -93,11 +93,33 @@ int delete_dupes(::std::vector<int> *vp) {
 double buy_and_sell_stock_once(const ::std::vector<double> &v) {
   if (v.size() <= 1) return 0.0;
   double max_profit = 0.0;
-  double min_idx = 0;
+  double cur_min = v[0];
   for (int i=1; i<v.size(); ++i) {
-    max_profit = ::std::max(max_profit, v[i]-v[min_idx]);
-    min_idx = v[i]<v[min_idx]?i:min_idx;
+    max_profit = ::std::max(max_profit, v[i]-cur_min);
+    cur_min = ::std::min(cur_min,v[i]);
   }
+  return max_profit;
+}
+
+/*********** buy_and_sell_stock_twice *************/
+double buy_and_sell_stock_twice(const ::std::vector<double> &v) {
+  if (v.size() <= 1) return 0.0;
+  
+  ::std::vector<double> max_profit_suffix(v.size());
+  max_profit_suffix.back() = 0.0;
+  double cur_max = v.back();
+  for (int i = v.size()-2; i>=0; --i) {
+    max_profit_suffix[i] = ::std::max(max_profit_suffix[i+1],cur_max-v[i]);
+    cur_max = ::std::max(cur_max, v[i]);
+  }
+
+  double max_profit = max_profit_suffix[0];
+  double cur_min = v[0];
+  for (int i=1; i<v.size()-1; ++i) {
+    max_profit = ::std::max(max_profit, v[i]-cur_min + max_profit_suffix[i+1]);
+    cur_min = ::std::min(cur_min, v[i]);
+  }
+
   return max_profit;
 }
 
