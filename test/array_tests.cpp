@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <array.hpp>
+#include "array.hpp"
 #include <vector>
 
 namespace algorithms {
