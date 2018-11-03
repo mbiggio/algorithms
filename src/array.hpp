@@ -110,6 +110,12 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v);
  */
 ::std::vector<int> beautiful_arrangement_ii(int n, int k);
 
+/**
+ * Given an integer n, return all the primes between 1 and n.
+ * Runtime complexity : O(n/2 + n/3 + n/7 + n/11 + ...) = O(nloglogn) - sieve of Erathostenes
+ */
+::std::vector<int> generate_primes(int n);
+
 } // array
 } // algorithms
 

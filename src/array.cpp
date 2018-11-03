@@ -158,5 +158,27 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v) {
   return result;
 }
 
+/*********** generate_primes *************/
+::std::vector<int> generate_primes(int n) {
+  ::std::vector<bool> isCandidate(n+1,true);
+  isCandidate[0] = isCandidate[1] = false;
+  ::std::vector<int> primes;
+  primes.reserve(n/2);
+
+  for (int i=2; i<=n; ++i) {
+    if (isCandidate[i]) {
+      int factor = 2;
+      while (factor*i <= n) {
+	isCandidate[factor*i] = false;
+	++factor;
+      }
+      primes.push_back(i);
+    }
+  }
+  return primes;
+
+}
+
+
 } // array
 } // algorithms

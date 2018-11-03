@@ -113,5 +113,33 @@ TEST(array,beautiful_arrangement_ii_test) {
   }
 }
 
+TEST(array,generate_primes_test) {
+  using testcase = ::std::tuple<int,::std::vector<int>>;
+  ::std::vector<testcase> testcases = {
+    {0,{}},
+    {1,{}},
+    {2,{2}},
+    {3,{2,3}},
+    {4,{2,3}},
+    {5,{2,3,5}},
+    {6,{2,3,5}},
+    {7,{2,3,5,7}},
+    {8,{2,3,5,7}},
+    {9,{2,3,5,7}},
+    {10,{2,3,5,7}},
+    {11,{2,3,5,7,11}},
+    {12,{2,3,5,7,11}},
+    {13,{2,3,5,7,11,13}},
+    {14,{2,3,5,7,11,13}},
+    {15,{2,3,5,7,11,13}},
+    {16,{2,3,5,7,11,13}},
+    {17,{2,3,5,7,11,13,17}},
+    {18,{2,3,5,7,11,13,17}}
+  };
+  for (auto &[n, r] : testcases) {
+    ASSERT_THAT(r, ::testing::Eq(array::generate_primes(n)));
+  }
+}
+
 } // tests
 } // algorithms
