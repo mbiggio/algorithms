@@ -179,6 +179,21 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v) {
 
 }
 
+/*********** apply_permutation *************/
+void apply_permutation(const ::std::vector<int> &p, ::std::vector<int> *vp) {
+  auto &v = *vp;
+  ::std::vector<int> pt(p.begin(),p.end());
+  for (int i=0; i<v.size(); ++i) {
+    if (pt[i] >= 0) {
+      int cur = v[i], j = i;
+      while (pt[j] >= 0) {
+	::std::swap(cur,v[pt[j]]);
+	pt[j] = pt[j] - v.size();
+	j = pt[j] + v.size();
+      }
+    }
+  }
+}
 
 } // array
 } // algorithms

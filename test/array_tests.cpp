@@ -141,5 +141,27 @@ TEST(array,generate_primes_test) {
   }
 }
 
+TEST(array,apply_permutation_test) {
+  using testcase = ::std::tuple<::std::vector<int>,::std::vector<int>,::std::vector<int>>;
+  ::std::vector<testcase> testcases = {
+    {{},{},{}},
+    {{0},{10},{10}},
+    {{0,1},{11,10},{11,10}},
+    {{1,0},{11,10},{10,11}},
+    {{0,1,2},{12,11,10},{12,11,10}},
+    {{0,2,1},{12,11,10},{12,10,11}},
+    {{1,0,2},{12,11,10},{11,12,10}},
+    {{1,2,0},{12,11,10},{10,12,11}},
+    {{2,0,1},{12,11,10},{11,10,12}},
+    {{2,1,0},{12,11,10},{10,11,12}},
+    {{0,1,2,3},{13,12,11,10},{13,12,11,10}},
+    {{2,0,1,3},{13,12,11,10},{12,11,13,10}}
+  };
+  for (auto &[p, v, r] : testcases) {
+    ASSERT_NO_THROW(array::apply_permutation(p,&v));
+    ASSERT_THAT(r, ::testing::Eq(v));
+  }
+}
+
 } // tests
 } // algorithms
