@@ -120,7 +120,7 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v);
  * Given an array v of n elements and a permutation p, apply p to a.
  * p is specified as an array of n unique integers from 0 to n-1,
  * where p[i] represents the new index of element v[i].
- * Runtime complexity : O()
+ * Runtime complexity : O(n)
  */
 void apply_permutation(const ::std::vector<int> &p, ::std::vector<int> *vp);
 
