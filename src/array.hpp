@@ -98,6 +98,18 @@ double buy_and_sell_stock_once(const ::std::vector<double> &v);
  */
 double buy_and_sell_stock_twice(const ::std::vector<double> &v);
 
+/**
+ * Given two integers n and k, construct a list 
+ * which contains n different positive integers 
+ * ranging from 1 to n and obeys the following requirement:
+ * Suppose this list is [a1, a2, a3, ... , an], then the list 
+ * [|a1 - a2|, |a2 - a3|, |a3 - a4|, ... , |an-1 - an|] 
+ * has exactly k distinct integers.
+ * n and k are in the range 1 <= k < n <= 1e4.
+ * Runtime complexity : O(n)
+ */
+::std::vector<int> beautiful_arrangement_ii(int n, int k);
+
 } // array
 } // algorithms
 

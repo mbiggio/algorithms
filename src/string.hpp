@@ -14,7 +14,7 @@ namespace string {
  * are counted as different substrings even if 
  * they consist of same characters.
  * Runtime complexity : O(n2) - expansion around center
- *                      O(n)  - Manacher's algorithm
+ *                      O(n)  - Manacher's algorithm - TODO
  */
 
 int count_substrings(const ::std::string &s);

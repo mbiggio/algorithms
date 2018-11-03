@@ -123,6 +123,40 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v) {
   return max_profit;
 }
 
+/*********** beautiful_arrangement_ii *************/
+::std::vector<int> beautiful_arrangement_ii(int n, int k) {
+  /**
+   * The idea here is that we can always construct
+   * a permutation of 1..n such that, taking the
+   * absolute difference of consecutive elements,
+   * we have a number h of 1s ranging from 1 to n-1,
+   * while the remaining n-h differences
+   * are the numbers 2,3,...,n-h occurring 
+   * exacly once.
+   * We can achieve this by ordering the elements
+   * from 1 to h in the first part of the array,
+   * and then alternating the residual max and 
+   * the residual min in the second part of the array.
+   * Fo example, for n = 5, we get:
+   *
+   * h = 4 : v = [1 - 2 - 3 - 4 - 5]
+   *                1   1   1   1
+   * h = 3 : v = [1 - 2 - 3 - 5 - 4]
+   *                1   1   2   1
+   * h = 2 : v = [1 - 2 - 5 - 3 - 4]
+   *                1   3   2   1
+   * h = 1 : v = [1 - 5 - 2 - 4 - 3]
+   *                4   3   2   1
+   *
+   * The problem is solved by constructing the 
+   * sequence corresponding to h = n-k.
+   */
+  ::std::vector<int> result(n);
+  for (int i=0; i<n-k; ++i) result[i] = i+1;
+  for (int i=n-k, cur=n; i<n; i+=2, --cur) result[i]=cur;
+  for (int i=n-k+1, cur=n-k+1; i<n; i+=2, ++cur) result[i]=cur;
+  return result;
+}
 
 } // array
 } // algorithms

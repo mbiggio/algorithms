@@ -31,14 +31,17 @@ int find_lus_length(const ::std::vector<::std::string> &s) {
    * The idea of the algorithm is that 
    * the longest uncommon substring, if it exists,
    * must be one of the input strings.
-   * Indeed, assume the contrary is true.
-   * Let the longest uncommon substring lus 
-   * be a substring of s1, so that it's not
-   * a substring of si for i = 2...n.
-   * This means that there is some ci in lus that
-   * is not in si, for i = 2...n.
-   * But each of these ci is in s1 as well,
-   * so this means lus must be equal to s1.
+   * Indeed, once an uncommon substring is found,
+   * extending it to the containing string again 
+   * results in an uncommon substring.
+   * To prove this, imagine u is an uncommon 
+   * substring, that is a subsequence
+   * of, say, string s1, which is not 
+   * a subsequence of any string si, i!=1.
+   * Suppose s1 is on the other hand a subsequence x
+   * of some input string sj, j!=1.
+   * But then also u, being a subsequence of s1 == x,
+   * must be a subsequence of sj, hence a contradiction.
    */
   int longest = -1;
   for (int i=0; i<s.size(); ++i) {

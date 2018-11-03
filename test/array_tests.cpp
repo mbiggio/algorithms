@@ -94,5 +94,24 @@ TEST(array,buy_and_sell_stock_twice_test) {
   }
 }
 
+TEST(array,beautiful_arrangement_ii_test) {
+  using testcase = ::std::tuple<int,int,::std::vector<int>>;
+  ::std::vector<testcase> testcases = {
+    {2,1,{1,2}},
+    {3,1,{1,2,3}},
+    {3,2,{1,3,2}},
+    {4,1,{1,2,3,4}},
+    {4,2,{1,2,4,3}},
+    {4,3,{1,4,2,3}},
+    {5,1,{1,2,3,4,5}},
+    {5,2,{1,2,3,5,4}},
+    {5,3,{1,2,5,3,4}},
+    {5,4,{1,5,2,4,3}}
+  };
+  for (auto &[n, k, r] : testcases) {
+    ASSERT_THAT(r, ::testing::Eq(array::beautiful_arrangement_ii(n,k)));
+  }
+}
+
 } // tests
 } // algorithms
