@@ -122,7 +122,7 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v);
  * where p[i] represents the new index of element v[i].
  * Runtime complexity : O(n)
  */
-void apply_permutation(const ::std::vector<int> &p, ::std::vector<int> *vp);
+void apply_permutation(::std::vector<int> *pp, ::std::vector<int> *vp);
 
 } // array
 } // algorithms

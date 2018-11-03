@@ -158,7 +158,7 @@ TEST(array,apply_permutation_test) {
     {{2,0,1,3},{13,12,11,10},{12,11,13,10}}
   };
   for (auto &[p, v, r] : testcases) {
-    ASSERT_NO_THROW(array::apply_permutation(p,&v));
+    ASSERT_NO_THROW(array::apply_permutation(&p,&v));
     ASSERT_THAT(r, ::testing::Eq(v));
   }
 }
