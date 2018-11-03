@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <bitwise.hpp>
+#include "bitwise.hpp"
 #include <vector>
 
 namespace algorithms {

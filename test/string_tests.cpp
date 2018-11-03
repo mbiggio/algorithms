@@ -25,6 +25,18 @@ TEST(string,count_substrings_test) {
   }
 }
 
+TEST(string,find_lus_length_test) {
+  using testcase = ::std::pair<::std::vector<::std::string>, int>;
+  ::std::vector<testcase> testcases = {
+    {{"aba","cdc","eae"},3},
+    {{"aba","aba","aba"},-1},
+    {{"aba","aa","bc"},3}
+  };
+  for (auto &[v, r] : testcases) {
+    ASSERT_EQ(r, string::find_lus_length(v));
+  }
+}
+
 
 } // tests
 } // algorithms
