@@ -124,6 +124,16 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v);
  */
 void apply_permutation(::std::vector<int> *pp, ::std::vector<int> *vp);
 
+/**
+ * Given a array v of n distinct element representing a
+ * permutation of the numbers 0..n-1, 
+ * modify it in-place so that it contains the next permutation
+ * in lexicographic order. If there is no next permutation,
+ * leave the array unchanged.
+ * Runtime complexity : O(n)
+ */
+void next_permutation(::std::vector<int> *vp);
+
 } // array
 } // algorithms
 

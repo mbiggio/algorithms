@@ -196,5 +196,17 @@ void apply_permutation(::std::vector<int> *pp, ::std::vector<int> *vp) {
   ::std::for_each(p.begin(),p.end(),[&v](int &i){i+=v.size();});
 }
 
+/*********** next_permutation *************/
+void next_permutation(::std::vector<int> *vp) {
+  auto &v = *vp;
+  int i = v.size()-2;
+  while (i>=0 && v[i]>v[i+1]) --i;
+  if (i<0) return;
+  auto it = ::std::find_if(v.rbegin(),v.rend(),
+      [&](const int vv){return vv>v[i];});
+  ::std::swap(*it,v[i]);
+  ::std::reverse(v.begin()+i+1,v.end());
+}
+
 } // array
 } // algorithms

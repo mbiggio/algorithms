@@ -159,9 +159,30 @@ TEST(array,apply_permutation_test) {
   };
   for (auto &[p, v, r] : testcases) {
     ASSERT_NO_THROW(array::apply_permutation(&p,&v));
-    ASSERT_THAT(r, ::testing::Eq(v));
+    ASSERT_THAT(v, ::testing::Eq(r));
   }
 }
 
+TEST(array,next_permutation_test) {
+  using testcase = ::std::pair<::std::vector<int>,::std::vector<int>>;
+  ::std::vector<testcase> testcases = {
+    {{},{}},
+    {{0},{0}},
+    {{0,1},{1,0}},
+    {{1,0},{1,0}},
+    {{0,1,2},{0,2,1}},
+    {{0,2,1},{1,0,2}},
+    {{1,0,2},{1,2,0}},
+    {{1,2,0},{2,0,1}},
+    {{2,0,1},{2,1,0}},
+    {{2,1,0},{2,1,0}},
+    {{1,0,3,2},{1,2,0,3}},
+    {{3,2,1,0},{3,2,1,0}}
+  };
+  for (auto &[v, r] : testcases) {
+    ASSERT_NO_THROW(array::next_permutation(&v));
+    ASSERT_THAT(v,::testing::Eq(r));
+  }
+}
 } // tests
 } // algorithms
