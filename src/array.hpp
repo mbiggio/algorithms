@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <random>
+#include <istream>
 
 namespace algorithms { 
 namespace array {
@@ -125,7 +127,7 @@ double buy_and_sell_stock_twice(const ::std::vector<double> &v);
 void apply_permutation(::std::vector<int> *pp, ::std::vector<int> *vp);
 
 /**
- * Given a array v of n distinct element representing a
+ * Given an array v of n distinct element representing a
  * permutation of the numbers 0..n-1, 
  * modify it in-place so that it contains the next permutation
  * in lexicographic order. If there is no next permutation,
@@ -133,6 +135,45 @@ void apply_permutation(::std::vector<int> *pp, ::std::vector<int> *vp);
  * Runtime complexity : O(n)
  */
 void next_permutation(::std::vector<int> *vp);
+
+/**
+ * Given an array v of n disinct elements and a
+ * non-negative integer k, return a subset of size k
+ * of the array elements. All subsets should be equally likely.
+ * Runtime complexity : O(n)
+ */
+::std::vector<int> random_sampling(::std::vector<int> *vp, int k);
+
+/**
+ * Given a size k in input, maintain a random subset of 
+ * size k from an input stream of integers.
+ * Runtime complexity : O(1) per input read
+ */
+class online_random_sampler {
+public:
+  online_random_sampler(int k, ::std::istream *in) : 
+    k(k), n(0), in(in), en(::std::random_device{}()) {
+    set.reserve(k);
+  };
+  void read();
+  const ::std::vector<int> &get_sample() const {
+    return set;
+  }
+
+private:
+  int k;
+  int n;
+  ::std::istream *in;
+  ::std::default_random_engine en;
+  ::std::vector<int> set;
+};
+
+/**
+ * Given a non-negative integer n in input,
+ * generate a random permutation of the numbers [0...n-1].
+ * Runtime complexity : O(n)
+ */
+::std::vector<int> generate_permutation(int n);
 
 } // array
 } // algorithms

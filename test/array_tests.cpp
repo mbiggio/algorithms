@@ -184,5 +184,7 @@ TEST(array,next_permutation_test) {
     ASSERT_THAT(v,::testing::Eq(r));
   }
 }
+
+
 } // tests
 } // algorithms

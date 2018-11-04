@@ -1,5 +1,7 @@
 #include "array.hpp"
 #include <algorithm>
+#include <random>
+#include <numeric>
 
 namespace algorithms {
 namespace array {
@@ -207,6 +209,40 @@ void next_permutation(::std::vector<int> *vp) {
   ::std::swap(*it,v[i]);
   ::std::reverse(v.begin()+i+1,v.end());
 }
+
+/*********** random_sampling *************/
+::std::vector<int> random_sampling(::std::vector<int> *vp, int k) {
+  auto &v = *vp;
+  ::std::vector<int> result(k);
+  ::std::default_random_engine en((::std::random_device())());
+  for (int i=0; i<k; ++i) {
+    ::std::swap(v[i],v[::std::uniform_int_distribution<int>{i,static_cast<int>(v.size()-1)}(en)]);
+    result[i]=v[i];
+  }
+  return result;
+}
+
+/*********** online_random_sampler *************/
+void online_random_sampler::read() {
+  int el;
+  *in >> el;
+  ++n;
+  if (set.size() < k) {
+    set.push_back(el);
+    return;
+  }
+  int idx = ::std::uniform_int_distribution<int>{0,n-1}(en);
+  if (idx < k) set[idx]=el;
+}
+
+/*********** generate_permutation *************/
+::std::vector<int> generate_permutation(int n) {
+  ::std::vector<int> p(n);
+  ::std::iota(p.begin(),p.end(),0);
+  ::std::default_random_engine en(::std::random_device{}());
+  for (int i=0; i<n-1; ++i) ::std::swap(p[i],p[::std::uniform_int_distribution<int>{i,n-1}(en)]);
+  return p;
+} 
 
 } // array
 } // algorithms
