@@ -254,9 +254,9 @@ bool increasing_triplet(const ::std::vector<int> &v) {
    * subarray v[i..n-1], while decreasing i to 0:
    *  1 - the current maximum element index "m"
    *  2 - a pair "p" of indices such that 
-   *      2.i   - i <= p.first < p.second <= n-1
-   *      2.ii  - v[p.first] < v[p.second]
-   *      2.iii - among pairs of indices satisfying 2.i and 2.ii,
+   *      2.a   - i <= p.first < p.second <= n-1
+   *      2.b   - v[p.first] < v[p.second]
+   *      2.c   - among pairs of indices satisfying 2.a and 2.b,
    *              p is one with maximum p.first.
    */
   int m = v.size()-1;
@@ -291,7 +291,7 @@ bool find_123_pattern(const ::std::vector<int> &v) {
    * When examining a new element v[i-1], if v[i-1] > v[k_i], then we can always
    * find an index l in range i..n-1 such that couple (i-1,l) can be chosen as (j_{i-1}, k_{i-1});
    * it's sufficient to choose as k_{i-1} the biggest index l among {k_i} U s such that v[i-1] > v[l].
-   * So start by putting (j_{i-1}, k_{i-1}) = (i,k_i), and keep popping from s and set k_{i-1} to 
+   * So start by putting (j_{i-1}, k_{i-1}) = (i,k_i), keep popping from s and set k_{i-1} to 
    * the popped index as long as v[i-1] > v[popped index].
    * After the pops, all indices in s will satisfy property 2.b.
    * To make propery 2.a true for the new stack, add i to the top of the stack.
