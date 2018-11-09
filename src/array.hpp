@@ -175,6 +175,24 @@ private:
  */
 ::std::vector<int> generate_permutation(int n);
 
+/**
+ * Given an array of n integers v, 
+ * return whether an increasing subsequence
+ * of length 3 exists or not in the array.
+ * Runtime complexity : O(n)
+ */
+bool increasing_triplet(const ::std::vector<int> &v);
+
+/**
+ * Given an array of n integers v, 
+ * a 132 pattern is a subsequence v[i], v[j], v[k]
+ * such that i < j < k and a[i] < a[k] < a[j]. 
+ * Design an algorithm that takes a list of n numbers
+ * as input and checks whether there is a 132 pattern in the list.
+ * Runtime complexity : O(n)
+ */
+bool find_123_pattern(const ::std::vector<int> &v);
+
 } // array
 } // algorithms
 

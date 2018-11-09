@@ -1,5 +1,6 @@
 #include "array.hpp"
 #include <algorithm>
+#include <stack>
 #include <random>
 #include <numeric>
 
@@ -243,6 +244,74 @@ void online_random_sampler::read() {
   for (int i=0; i<n-1; ++i) ::std::swap(p[i],p[::std::uniform_int_distribution<int>{i,n-1}(en)]);
   return p;
 } 
+
+/*********** increasing_triplet *************/
+bool increasing_triplet(const ::std::vector<int> &v) {
+  if (v.empty()) return false;
+
+  /**
+   * idea: maintain two quantities for each
+   * subarray v[i..n-1], while decreasing i to 0:
+   *  1 - the current maximum element index "m"
+   *  2 - a pair "p" of indices such that 
+   *      2.i   - i <= p.first < p.second <= n-1
+   *      2.ii  - v[p.first] < v[p.second]
+   *      2.iii - among pairs of indices satisfying 2.i and 2.ii,
+   *              p is one with maximum p.first.
+   */
+  int m = v.size()-1;
+  ::std::pair<int,int> p{-1,-1};
+  for (int i=v.size()-2; i>=0; --i) {
+    if (p.first<0 || v[i]>v[p.first]) {
+      if (v[i]<v[m]) p={i,m};
+      else m=i;      
+    }
+    else if (v[i]<v[p.first]) return true;
+  }        
+  return false;
+}
+
+/*********** find_123_pattern *************/
+bool find_123_pattern(const ::std::vector<int> &v) {
+  if (v.empty()) return false;
+
+  /**
+   * Idea for the algorithm: 
+   * 1 - for each subarray v[i..n-1], keep a pair of indices (j_i, k_i) such that:
+   *   1.a - i <= j_i < k_i < n
+   *   1.b - v[ji] > v[ki]
+   *   1.c - among the set of all couples (l,m) satisfying properties 1.a and 1.b,
+   *         (j_i, k_i) is one with maximal v[k_i]
+   *
+   * 2 - maintain a stack s of indices such that:
+   *   2.a - s contains all indices l such that i <= l < n and v[l] > v[k_i]
+   *   2.b - the indices l in s are ordered in ascending order of l and v[l] from the top to the 
+   *         bottom of the stack
+   *
+   * When examining a new element v[i-1], if v[i-1] > v[k_i], then we can always
+   * find an index l in range i..n-1 such that couple (i-1,l) can be chosen as (j_{i-1}, k_{i-1});
+   * it's sufficient to choose as k_{i-1} the biggest index l among {k_i} U s such that v[i-1] > v[l].
+   * So start by putting (j_{i-1}, k_{i-1}) = (i,k_i), and keep popping from s and set k_{i-1} to 
+   * the popped index as long as v[i-1] > v[popped index].
+   * After the pops, all indices in s will satisfy property 2.b.
+   * To make propery 2.a true for the new stack, add i to the top of the stack.
+   */
+
+  ::std::stack<int> s;
+  ::std::pair<int,int> p{-1,-1};
+  for (int i=v.size()-1; i>=0; --i) {
+    if (p.second<0 || v[i]>v[p.second]) {
+      p = {i,p.second};
+      while (!s.empty() && v[i] > v[s.top()]) {
+	p.second = s.top();
+	s.pop();
+      }
+      s.push(i);
+    }
+    else if (v[i]<v[p.second]) return true;
+  }
+  return false;
+}
 
 } // array
 } // algorithms
