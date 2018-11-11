@@ -6,6 +6,72 @@
 namespace algorithms {
 namespace tests {
 
+TEST(string,is_palyndrome) {
+  using testcase = ::std::pair<::std::string, bool>;
+  ::std::vector<testcase> testcases = {
+    {"",true},
+    {"a",true},
+    {"ab",false},
+    {"aa",true},
+    {"abc",false},
+    {"aac",false},
+    {"aba",true},
+    {"abb",false},
+    {"aaa",true}
+  };
+  for (auto &[s, r] : testcases) {
+    ASSERT_EQ(r, string::is_palyndrome(s));
+  }
+}
+
+TEST(string,string_to_int) {
+  using testcase = ::std::pair<::std::string, int>;
+  ::std::vector<testcase> testcases = {
+    {"",0},
+    {"-",0},
+    {"0",0},
+    {"00",0},
+    {"000",0},
+    {"1",1},
+    {"2",2},
+    {"12345",12345},
+    {"-1",-1},
+    {"-12345",-12345}
+  };
+  for (auto &[s, r] : testcases) {
+    ASSERT_EQ(r, string::string_to_int(s));
+  }
+}
+
+TEST(string,int_to_string) {
+  using testcase = ::std::pair<int,::std::string>;
+  ::std::vector<testcase> testcases = {
+    {0,"0"},
+    {-0,"0"},
+    {1,"1"},
+    {2,"2"},
+    {12345,"12345"},
+    {-1,"-1"},
+    {-12345,"-12345"}
+  };
+  for (auto &[s, r] : testcases) {
+    ASSERT_EQ(r, string::int_to_string(s));
+  }
+}
+
+TEST(string,reverse_words) {
+  using testcase = ::std::pair<::std::string,::std::string>;
+  ::std::vector<testcase> testcases = {
+    {"",""},
+    {"alice likes bob","bob likes alice"},
+    {"ciao","ciao"}
+  };
+  for (auto &[s,r]: testcases) {
+    ASSERT_NO_THROW(string::reverse_words(&s));
+    ASSERT_EQ(r,s);
+  }
+}
+
 TEST(string,count_substrings_test) {
   using testcase = ::std::pair<::std::string, int>;
   ::std::vector<testcase> testcases = {

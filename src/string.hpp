@@ -7,6 +7,35 @@ namespace algorithms {
 namespace string {
 
 /**
+ * Check if a string s of n characters
+ * is a palyndrome or not.
+ * Runtime complexity : O(n)
+ */
+bool is_palyndrome(const ::std::string &s);
+
+/**
+ * Convert a string s of n characters
+ * representing an integer fitting in a int 
+ * to its numeric value.
+ * Runtime complexity : O(n)
+ */
+int string_to_int(const ::std::string &s);
+
+/**
+ * Convert an integer k of n digit
+ * to its decimal representation as a string.
+ * Runtime complexity : O(n)
+ */
+::std::string int_to_string(const int k);
+
+/**
+ * Reverse the order of the words
+ * in a string s of n characters.
+ * Runtime complexity : O(n)
+ */
+void reverse_words(::std::string *sp);
+
+/**
  * Given a string s of n characters, 
  * count how many palindromic substrings there are in this string.
  * A substring has to be a contiguous subset of s.

@@ -1,7 +1,51 @@
 #include "string.hpp"
+#include<algorithm>
 
 namespace algorithms {
 namespace string {
+
+/*********** is_palyndrome *************/
+bool is_palyndrome(const ::std::string &s) {
+  for (int i=0; i<s.size()/2; ++i) {
+    if (s[i] != s[s.size()-1-i]) return false;
+  }
+  return true;
+}
+
+/*********** string_to_int *************/
+int string_to_int(const ::std::string &s) {
+  int result = 0;
+  if (s.empty()) return result;
+  bool is_neg = s.front()=='-';
+  for (int i=is_neg?1:0; i<s.size(); ++i) {
+    result = result*10 + static_cast<int>(s[i]-'0');
+  }
+  return is_neg?-result:result; 
+}
+
+/*********** int_to_string *************/
+::std::string int_to_string(const int k) {
+  if (k==0) return "0";
+  ::std::string result;
+  for (int i = abs(k); i>0; i/=10) {
+    result.push_back(static_cast<char>(i%10)+'0');
+  }
+  if (k<0) result.push_back('-');
+  ::std::reverse(result.begin(),result.end());
+  return result;
+}
+
+/*********** count_substrings *************/
+void reverse_words(::std::string *sp) {
+  ::std::string &s = *sp;
+  for (int i=0; i<s.size();) {
+    int j = i;
+    while(j<s.size() && s[j]!=' ') ++j;
+    ::std::reverse(s.begin()+i,s.begin()+j);
+    i=j+1;
+  }
+  ::std::reverse(s.begin(),s.end());
+}
 
 /*********** count_substrings *************/
 int count_substrings(const ::std::string &s) {
