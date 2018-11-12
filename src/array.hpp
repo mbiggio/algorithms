@@ -1,5 +1,5 @@
-#ifndef __ARRAY__
-#define __ARRAY__
+#ifndef _ARRAY_
+#define _ARRAY_
 #include <vector>
 #include <algorithm>
 #include <cmath>

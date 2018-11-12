@@ -10,7 +10,7 @@ namespace dp {
  * and an integer b. The integer b denotes 
  * that from any place (suppose the index is i) 
  * in the array A, you can jump to any one of 
- * the places in the array A indexed i+1, i+2, …, i+B
+ * the places in the array A indexed i+1, i+2, ..., i+B
  * if this place can be jumped to. 
  * Also, if you step on the index i, 
  * you have to pay a[i] coins. 

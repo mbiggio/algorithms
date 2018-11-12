@@ -103,6 +103,23 @@ TEST(string,find_lus_length_test) {
   }
 }
 
+TEST(string,look_and_say_test) {
+  using testcase = ::std::pair<int, ::std::string>;
+  ::std::vector<testcase> testcases = {
+    {1,"1"},
+    {2,"11"},
+    {3,"21"},
+    {4,"1211"},
+    {5,"111221"},
+    {6,"312211"},
+    {7,"13112221"},
+    {8,"1113213211"}
+  };
+  for (auto &[i, r] : testcases) {
+    ASSERT_EQ(r, string::look_and_say(i));
+  }
+}
+
 
 } // tests
 } // algorithms

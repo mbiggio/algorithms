@@ -1,5 +1,5 @@
-#ifndef __STRING__
-#define __STRING__
+#ifndef _STRING_
+#define _STRING_
 #include <string>
 #include <vector>
 
@@ -61,6 +61,21 @@ int count_substrings(const ::std::string &s);
  * Runtime complexity : O(x*n2)
  */
 int find_lus_length(const ::std::vector<::std::string> &s);
+
+/**
+ * The look-and-say sequence starts with 1.
+ * Subsequent numbers are derived by describing the 
+ * previous number in terms of consecutive digits.
+ * Specifically, to generate an entry of the sequence 
+ * from the previous entry, read off the digits of the
+ * previous entry, counting the number of digits
+ * in groups of the same digit.
+ * For example: 
+ * 1; one 1; two 1s; one 2 and then one 1; ...
+ * Write a program that takes as input an integer n
+ * and returns the nth integer in the look-and-say sequence.
+ */
+::std::string look_and_say(int n);
 
 } // string
 } // algorithms

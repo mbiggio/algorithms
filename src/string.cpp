@@ -98,5 +98,21 @@ int find_lus_length(const ::std::vector<::std::string> &s) {
   return longest;
 }
 
+/*********** look_and_say *************/
+::std::string look_and_say(int n) {
+  ::std::string current("1");
+  for (int i=2; i<=n; ++i) {
+    ::std::string next;
+    for (int j=0; j<current.size();) {      
+      char curchar=current[j];
+      int count=0;
+      while (j<current.size() && current[j]==curchar) {++j; ++count;};
+      next.append(::std::to_string(count)).push_back(curchar);
+    }
+    current = ::std::move(next);
+  }    
+  return current;
+}
+
 } // string
 } // algorithms

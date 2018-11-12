@@ -1,5 +1,5 @@
-#ifndef __BITWISE__
-#define __BITWISE__
+#ifndef _BITWISE_
+#define _BITWISE_
 
 namespace algorithms { 
 namespace bitwise {
