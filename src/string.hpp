@@ -73,9 +73,37 @@ int find_lus_length(const ::std::vector<::std::string> &s);
  * For example: 
  * 1; one 1; two 1s; one 2 and then one 1; ...
  * Write a program that takes as input an integer n
- * and returns the nth integer in the look-and-say sequence.
+ * and returns the nth integer in the look-and-say sequence.a
+ * Runtime complexity : O(n2^n)
  */
 ::std::string look_and_say(int n);
+
+/**
+ * The Roman numeral representation of positive integers
+ * uses the symbols {I=1,V=5,X=10,L=50,C=100,D=500,M=1000}.
+ * We define a string over the Roman number symbols to be valid
+ * if symbols appear in non-decreasing order,
+ * with the following exceptions allowed:
+ *   * I can immediately precede V and X 
+ *   * X can immediately precede L and C
+ *   * C can immediately precede D and M
+ * Back-to-back exceptions are not allowed, e.g. IXC and CDM are not valid.
+ * A valid Roman number string represents the integer
+ * which is the sum of the symbols that do not correspond
+ * to the exceptions. For the exceptions, 
+ * add the difference of the larger symbol and the smaller symbol.
+ * Take as input a valid Roman number string s 
+ * and return the integer it corresponds to.
+ */
+int roman_to_integer(const ::std::string &s);
+
+/**
+ * Given two strings s (the "search string", length m)
+ * and t (the "text string", length n),
+ * find the first occurrence of s in t.
+ * Runtime complexity : O(m+n) expected - Rabin-Karp algorithm
+ */
+int search(const ::std::string &t, const ::std::string &s);
 
 } // string
 } // algorithms

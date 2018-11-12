@@ -1,5 +1,6 @@
 #include "string.hpp"
 #include<algorithm>
+#include<unordered_map>
 
 namespace algorithms {
 namespace string {
@@ -112,6 +113,36 @@ int find_lus_length(const ::std::vector<::std::string> &s) {
     current = ::std::move(next);
   }    
   return current;
+}
+
+/*********** roman_to_integer *************/
+int roman_to_integer(const ::std::string &s) {
+  static ::std::unordered_map<char,int> m
+    = {{'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}};
+  int result = 0;
+  for (int i=0; i<s.size(); ++i) {
+    if (i<s.size()-1 && m[s[i]]<m[s[i+1]]) result-=m[s[i]];
+    else result+=m[s[i]];
+  }
+  return result;
+}
+
+/*********** search *************/
+int search(const ::std::string &t, const ::std::string &s) {
+  static const long long kWidth = 256;
+  if (s.size()>t.size()) return -1;
+  long long hs=0, hw=0, power=1;
+  for (int i=0; i<s.size(); ++i) {
+    hs=kWidth*hs+s[i];
+    hw=kWidth*hw+t[i];
+    power*=kWidth;
+  }
+  if (hw==hs && !t.compare(0,s.size(),s)) return 0;
+  for (int j=1; j<=t.size()-s.size(); ++j) {
+    hw = kWidth*hw - power*t[j-1] + t[j+s.size()-1];
+    if (hw==hs && !t.compare(j,s.size(),s)) return j;
+  }
+  return -1;
 }
 
 } // string

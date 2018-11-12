@@ -120,6 +120,29 @@ TEST(string,look_and_say_test) {
   }
 }
 
+TEST(string,roman_to_integer_test) {
+  using testcase = ::std::pair<::std::string, int>;
+  ::std::vector<testcase> testcases = {
+    {"XXXXXIIIIIIIII",59},
+    {"LVIIII",59},
+    {"LIX",59}
+  };
+  for (auto &[i, r] : testcases) {
+    ASSERT_EQ(r, string::roman_to_integer(i));
+  }
+}
+
+TEST(string,search_test) {
+  using testcase = ::std::tuple<::std::string, ::std::string, int>;
+  ::std::vector<testcase> testcases = {
+    {"GACGCCA","CGC",2},
+    {"GACGCCA","CCC",-1}
+  };
+  for (auto &[s1, s2, r] : testcases) {
+    ASSERT_EQ(r, string::search(s1,s2));
+  }
+}
+
 
 } // tests
 } // algorithms

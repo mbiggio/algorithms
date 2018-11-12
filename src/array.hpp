@@ -200,6 +200,7 @@ bool find_123_pattern(const ::std::vector<int> &v);
  * where each 1 marks the home of someone in the group. 
  * The distance is calculated using Manhattan Distance, 
  * where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
+ * Runtime complexity : O(n)
  */
 int min_total_distance(const ::std::vector<::std::vector<int>> &grid);
 
