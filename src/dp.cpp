@@ -52,11 +52,10 @@ int egg_drop(int n) {
    * p[n+1] = 0
    */
 
-  ::std::vector<int> p(n);
-  p.back()=1;
-  for (int i=n-2; i>=0; --i) {
-    p[i] = n-i; // use one egg
-    for (int k=i; k<n-1; ++k) {
+  ::std::vector<int> p(n+1);
+  for (int i=n-1; i>=0; --i) {
+    p[i] = ::std::numeric_limits<int>::max();
+    for (int k=i; k<n; ++k) {
       p[i] = ::std::min(p[i],::std::max(k-i,p[k+1])+1);
     }
   }
