@@ -6,12 +6,15 @@ find_package(Threads REQUIRED)
 set(SRC
   src/bitwise.cpp
   src/array.cpp
-  src/string.cpp)
+  src/string.cpp
+  src/dp.cpp
+  src/math.cpp)
 set(TEST
   test/main.cpp
   test/bitwise_tests.cpp
   test/array_tests.cpp
-  test/string_tests.cpp)
+  test/string_tests.cpp
+  test/dp_tests.cpp)
 
 # the executable target for the unit-tests
 add_executable(${PROJECT_NAME}_test ${SRC} ${TEST})

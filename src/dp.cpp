@@ -1,4 +1,5 @@
 #include "dp.hpp"
+#include <algorithm>
 
 namespace algorithms {
 namespace dp {
@@ -25,6 +26,19 @@ namespace dp {
     idx = n[idx];
   }
   return result;  
+}
+
+/*********** egg_drop *************/
+int egg_drop(int n) {
+  ::std::vector<int> p(n);
+  p.back()=1;
+  for (int i=n-2; i>=0; --i) {
+    p[i] = n-i; // use one egg
+    for (int k=i; k<n-1; ++k) {
+      p[i] = ::std::min(p[i],::std::max(k-i,p[k+1])+1);
+    }
+  }
+  return p[0];
 }
 
 } // namespace dp

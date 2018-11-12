@@ -31,5 +31,15 @@ namespace dp {
  */
 ::std::vector<int> cheapest_jump(const ::std::vector<int>& a, const int b);
 
+/**
+ * There is a building of n floors.
+ * If an egg drops from the mth floor of above, it will break.
+ * If it's dropped from any floor below, it will not break.
+ * You're given two eggs.
+ * Find m while minimizing the number of drops for the worst case.
+ */
+int egg_drop(int n);
+
 } // namespace dp
 } // namespace algorithms
+#endif
