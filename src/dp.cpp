@@ -30,6 +30,28 @@ namespace dp {
 
 /*********** egg_drop *************/
 int egg_drop(int n) {
+
+  /**
+   * Suppose you know that from floors 0..i-1
+   * the egg won't break, and suppose you want to 
+   * compute the minimum number of trials necessary to
+   * determine the critical floor among floors [i..n-1] with 2 eggs.
+   * One possibility is to use a single egg. This would cost
+   * in the worst case n-i drops (when the egg never breaks).
+   * On the other hand, we might try a drop from floor k,
+   * where k is in [i..n-1].
+   * If the egg breaks, the only way is to do an 
+   * exhaustive search in [i..k-1] that will cost 
+   * k-i drops in the worst case.
+   * If the egg does not break, then we can use the two
+   * eggs on subarray [k+1..n-1], that will cost us
+   * p[k+1,j] in the worst case.
+   * So the recursion ends up being:
+   *
+   * p[i]   = 1 + min_{k=i..n} max{k-i,p[k+1]}
+   * p[n+1] = 0
+   */
+
   ::std::vector<int> p(n);
   p.back()=1;
   for (int i=n-2; i>=0; --i) {
