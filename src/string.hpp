@@ -2,6 +2,7 @@
 #define _STRING_
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 namespace algorithms {
 namespace string {
@@ -104,6 +105,26 @@ int roman_to_integer(const ::std::string &s);
  * Runtime complexity : O(m+n) expected - Rabin-Karp algorithm
  */
 int search(const ::std::string &t, const ::std::string &s);
+
+/**
+ * You have a large text file containing n words.
+ * Given any two words, find the shortest distance 
+ * (in terms of number of words) between them in the file.
+ * If the operation will be repeated many times for the same 
+ * file (but different pairs of words), can you optimize your
+ * solution?
+ * Runtime complexity : O(n*w) - constructor
+ *                      O(n1 + n2) - distance
+ */
+class word_distance {
+public:
+  word_distance(const ::std::string &text);
+  int distance(const ::std::string &w1, const ::std::string &w2) const;
+
+private:
+  const std::string &_text;
+  ::std::unordered_map<::std::string, ::std::vector<int>> _m;
+};
 
 } // string
 } // algorithms

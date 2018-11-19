@@ -37,6 +37,7 @@ namespace dp {
  * If it's dropped from any floor below, it will not break.
  * You're given two eggs.
  * Find m while minimizing the number of drops for the worst case.
+ * Runtime complexity : O(n2)
  */
 int egg_drop(int n);
 

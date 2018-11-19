@@ -48,7 +48,7 @@ int egg_drop(int n) {
    * p[k+1,j] in the worst case.
    * So the recursion ends up being:
    *
-   * p[i]   = 1 + min_{k=i..n} max{k-i,p[k+1]}
+   * p[ i ] = 1 + min_{k=i..n} max{k-i,p[k+1]}
    * p[n+1] = 0
    */
 

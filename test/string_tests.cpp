@@ -143,6 +143,25 @@ TEST(string,search_test) {
   }
 }
 
+TEST(string,word_distance) {
+  using testcase = ::std::tuple<::std::string, ::std::string, ::std::string, int>;
+  ::std::vector<testcase> testcases = {
+    {"AAA","BBB","AAA",-1},
+    {"AAA AAA","AAA","AAA",0},
+    {"AAA BBB","AAA","AAA",0},
+    {"AAA BBB","AAA","BBB",1},
+    {"AAA BBB","BBB","AAA",1},
+    {"AAA BBB CCC","AAA","BBB",1},
+    {"AAA BBB CCC","BBB","CCC",1},
+    {"AAA BBB CCC","AAA","CCC",2},
+    {"AAA BBB BBB","AAA","BBB",1}
+  };
+  for (auto &[t, w1, w2, r] : testcases) {
+    string::word_distance wd(t);
+    ASSERT_EQ(r, wd.distance(w1,w2));
+  }
+}
+
 
 } // tests
 } // algorithms

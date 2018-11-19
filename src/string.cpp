@@ -1,6 +1,7 @@
 #include "string.hpp"
 #include<algorithm>
 #include<unordered_map>
+#include<sstream>
 
 namespace algorithms {
 namespace string {
@@ -143,6 +144,31 @@ int search(const ::std::string &t, const ::std::string &s) {
     if (hw==hs && !t.compare(j,s.size(),s)) return j;
   }
   return -1;
+}
+
+/*********** word_distance *************/
+word_distance::word_distance(const ::std::string &text) : _text(text) {
+  ::std::istringstream iss(text);
+  for (int idx=0; iss; ++idx) {
+    ::std::string w;
+    iss >> w;
+    _m[w].emplace_back(idx);
+  }
+}
+
+int word_distance::distance(const ::std::string &w1, const ::std::string &w2) const {
+  auto it1 = _m.find(w1), it2 = _m.find(w2);
+  if (it1 == _m.end() || it2 == _m.end()) return -1;
+
+  const auto &l1 = it1->second, &l2 = it2->second;
+  int idx1 = 0, idx2 = 0;
+  int min_dist = ::std::numeric_limits<int>::max();
+  while (idx1 < l1.size() && idx2 < l2.size()) {
+    min_dist = ::std::min(min_dist, ::std::abs(l1[idx1]-l2[idx2]));
+    if (l1[idx1] < l2[idx2]) ++idx1;
+    else ++idx2;
+  }
+  return min_dist;
 }
 
 } // string
