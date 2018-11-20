@@ -32,5 +32,17 @@ int n_lockers(int n) {
   return ::std::floor(::std::sqrt(n));
 }
 
+/*********** add_without_plus *************/
+int add_without_plus(int a, int b) {
+  const int size=sizeof(int)*8;
+  int c=0, carry=0;
+  for (int i=0; i<size; ++i) {    
+    int sum = ((a>>i)&1)^((b>>i)&1)^carry;
+    carry = (((a>>i)&1)&&((b>>i)&1)) || (((a>>i)&1)&&carry) || (((b>>i)&1)&&carry);
+    c |= sum << i;
+  }
+  return c;
+}
+
 } // math
 } // algorithms

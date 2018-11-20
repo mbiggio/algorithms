@@ -14,7 +14,8 @@ set(TEST
   test/bitwise_tests.cpp
   test/array_tests.cpp
   test/string_tests.cpp
-  test/dp_tests.cpp)
+  test/dp_tests.cpp
+  test/math_tests.cpp)
 
 # the executable target for the unit-tests
 add_executable(${PROJECT_NAME}_test ${SRC} ${TEST})

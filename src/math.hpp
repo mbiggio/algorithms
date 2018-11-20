@@ -1,5 +1,5 @@
-#ifndef _MATH_
-#define _MATH_
+#ifndef _ALGOMATH_
+#define _ALGOMATH_
 #include <vector>
 
 namespace algorithms {
@@ -29,6 +29,12 @@ int min_total_distance(const ::std::vector<::std::vector<int>> &grid);
  * Runtime complexity : O(sqrt(n))
  */
 int n_lockers(int n);
+
+/**
+ * Write a function that adds two numbers.
+ * You should not use + or any other arithmetic operator.
+ */
+int add_without_plus(int a, int b);
 
 } // math
 } // algorithms
