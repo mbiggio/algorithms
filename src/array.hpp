@@ -193,6 +193,14 @@ bool increasing_triplet(const ::std::vector<int> &v);
  */
 bool find_123_pattern(const ::std::vector<int> &v);
 
+/**
+ * Given a sorted array of n integers v
+ * that has been rotated an unknown number of times, 
+ * write code to find an element in the array. 
+ * You may assume that the array was originally 
+ * sorted in increasing order.
+ */
+int search_rotated(const ::std::vector<int> &v, int t);
 
 } // array
 } // algorithms

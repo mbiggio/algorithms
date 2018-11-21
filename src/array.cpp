@@ -329,5 +329,65 @@ int min_total_distance(const ::std::vector<::std::vector<int>> &grid) {
   return d;  
 }
 
+/*********** search_rotated *************/
+int search_rotated(const ::std::vector<int> &v, int t) {
+
+  /**
+   * We do a pseudo binary search,
+   * comparing target t with the middle element a[m]
+   * and with the extreme elements a[s] and a[e].
+   * We make sure the array has at least length 3
+   * so that s < m < e.
+   * As long as a[s] != a[m] or a[e] != a[m],
+   * we can always recurse on one of the two halves,
+   * otherwise we need to do a linear scan.
+   * Here are all the possible cases:
+   *
+   *  * t = a[m] --> return true
+   *  * a[s] = a[m] = a[e] --> full search;
+   *  * a[s] < a[m]
+   *    * t >= a[s] && t < a[m] --> e=m-1
+   *    * t > a[m] || t < a[s] --> s=m+1  
+   *  * a[s] > a[m]
+   *    * t >= a[s] || t < a[m] --> e=m-1
+   *    * t > a[m] && t < a[s] --> s=m+1
+   *  * a[e] > a[m]
+   *    * t > a[m] && t <= a[e] --> s=m+1
+   *    * t < a[m] || t > a[e] --> e=m-1
+   *  * a[e] < a[m]
+   *    * t > a[m] || t <= a[e] --> s=m+1
+   *    * t < a[m] && t > a[e] --> e=m-1  
+   */
+  int s=0, e=v.size()-1;
+  while(e-s+1>=3) {
+    int m=s+(e-s)/2;
+    if (t==v[m]) return m;
+
+    if (v[s]==v[m] && v[m]==v[e]) break; // linear search needed
+    else if (v[s]<v[m]) {
+      if (t>=v[s] && t<v[m]) e=m-1;
+      else s=m+1;
+    }
+    else if(v[s]>v[m]) {
+      if (t>=v[s] || t<v[m]) e=m-1;
+      else s=m+1;
+    }
+    else if (v[e]>v[m]) {
+      if (t>v[m] && t<=v[e]) s=m+1;
+      else e=m-1;
+    }
+    else if(v[e]<v[m]) {
+      if (t>v[m] || t<=v[e]) s=m+1;
+      else e=m-1;
+    }            
+  }
+
+  // if we ended up here, we need a linear search
+  for (int i=s; i<=e; ++i) {
+    if (v[i]==t) return i;
+  }
+  return -1;
+}  
+
 } // array
 } // algorithms
