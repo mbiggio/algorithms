@@ -31,8 +31,9 @@ int min_total_distance(const ::std::vector<::std::vector<int>> &grid);
 int n_lockers(int n);
 
 /**
- * Write a function that adds two numbers.
+ * Write a function that adds two n-bit numbers.
  * You should not use + or any other arithmetic operator.
+ * Runtime complexity : O(n)
  */
 int add_without_plus(int a, int b);
 

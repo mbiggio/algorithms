@@ -34,13 +34,18 @@ int n_lockers(int n) {
 
 /*********** add_without_plus *************/
 int add_without_plus(int a, int b) {
-  const int size=sizeof(int)*8;
-  int c=0, carry=0;
-  for (int i=0; i<size; ++i) {    
-    c |= (((a>>i)&1)^((b>>i)&1)^carry) << i;
-    carry = (((a>>i)&1)&&((b>>i)&1)) || (((a>>i)&1)&&carry) || (((b>>i)&1)&&carry);
+  /**
+   * The idea is that add(a,b) = add(a^b,(a&b)<<1),
+   * where a^b represents the addition of a and b
+   * without considering the carries,
+   * and (a&b)<<1 represents the carries.
+   */
+  while(b) {
+    int tmp = a;
+    a ^= b;
+    b = (tmp&b)<<1;
   }
-  return c;
+  return a;
 }
 
 } // math
