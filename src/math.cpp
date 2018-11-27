@@ -48,5 +48,12 @@ int add_without_plus(int a, int b) {
   return a;
 }
 
+/*********** number_of_twos *************/
+int number_of_twos(int n) {
+  int count=0;
+  //TODO
+  return count;
+}
+
 } // math
 } // algorithms

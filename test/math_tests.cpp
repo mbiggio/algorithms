@@ -18,6 +18,17 @@ TEST(math,add_without_plus_test) {
   }
 }
 
+TEST(math,number_of_twos_test) {
+  using testcase = ::std::pair<int,int>;
+  ::std::vector<testcase> testcases = {
+    //TODO
+  };
+  for (auto &[n, r] : testcases) {
+    ASSERT_EQ(r, math::number_of_twos(n));
+  }
+}
+
+
 
 } // tests
 } // algorithms

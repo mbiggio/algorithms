@@ -37,6 +37,11 @@ int n_lockers(int n);
  */
 int add_without_plus(int a, int b);
 
+/**
+ * Write a method to count the number of 2s between 0 and n.
+ */
+int number_of_twos(int n);
+
 } // math
 } // algorithms
 #endif

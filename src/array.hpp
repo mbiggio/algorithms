@@ -199,8 +199,30 @@ bool find_123_pattern(const ::std::vector<int> &v);
  * write code to find an element in the array. 
  * You may assume that the array was originally 
  * sorted in increasing order.
+ * Runtime complexity : O(n) (if repeated elements)
+ *                      O(logn) (if unique elements)
  */
 int search_rotated(const ::std::vector<int> &v, int t);
+
+/**
+ * Given an array filled with letters and numbers, find 
+ * the longest subarray with an equal number of letters 
+ * and numbers.
+ * Runtime complexity : O(n)
+ */
+::std::pair<int,int> find_longest_subarray(const ::std::vector<char> &v);
+
+/**
+ * A circus is designing a tower routine consisting of people
+ * standing atop one another's shoulders.
+ * For practical and aesthetic reasons, each person must be
+ * both shorter and lighter than the person below him or her.
+ * Given the heights and weights of each person in the circus,
+ * write a method to compute the largest possible number of people
+ * in such a tower.
+ * Runtime complexity : O(n2)
+ */
+::std::vector<::std::pair<int,int>> circus_tower(::std::vector<::std::pair<int,int>> *vp);
 
 } // array
 } // algorithms

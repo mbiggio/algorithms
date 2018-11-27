@@ -185,6 +185,30 @@ TEST(array,next_permutation_test) {
   }
 }
 
+TEST(array,find_longest_subarray_test) {
+  using testcase = ::std::pair<::std::vector<char>,::std::pair<int,int>>;
+  ::std::vector<testcase> testcases = {
+    {{},{0,-1}},
+    {{'1','a','1'},{0,1}},
+    {{'a','1','a'},{0,1}},
+    {{'a','1','a','a','a','1','1','1','a','1','a','a','1','1','a','a','a','a','a','a'},{0,13}},
+  };
+  for (auto &[v, r] : testcases) {
+    ASSERT_EQ(r, array::find_longest_subarray(v));
+  }
+}
+
+TEST(array,circus_tower_test) {
+  using testcase = ::std::pair<::std::vector<::std::pair<int,int>>,::std::vector<::std::pair<int,int>>>;
+  ::std::vector<testcase> testcases = {
+    {{{65,100},{70,150},{56,90},{75,190},{60,95},{68,110}},{{56,90},{60,95},{65,100},{68,110},{70,150},{75,190}}},
+    {{{65,100},{70,150},{56,90},{75,190},{60,95},{68,100}},{{56,90},{60,95},{65,100},{70,150},{75,190}}}
+  };
+  for (auto &[v, r] : testcases) {
+    ASSERT_THAT(array::circus_tower(&v),::testing::Eq(r));
+  }
+}
+
 
 } // tests
 } // algorithms

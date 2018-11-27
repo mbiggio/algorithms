@@ -3,6 +3,7 @@
 #include <stack>
 #include <random>
 #include <numeric>
+#include <unordered_map>
 
 namespace algorithms {
 namespace array {
@@ -388,6 +389,59 @@ int search_rotated(const ::std::vector<int> &v, int t) {
   }
   return -1;
 }  
+
+/*********** find_longest_subarray *************/
+::std::pair<int,int> find_longest_subarray(const ::std::vector<char> &v) {
+  ::std::unordered_map<int,int> m{{0,-1}};
+  int sum = 0;
+  ::std::pair<int,int> max_so_far{0,-1};
+  for (int i=0; i<v.size(); ++i) {
+    sum+=::std::isdigit(v[i])?1:-1;
+    auto it = m.find(sum);
+    if (it!=m.end() && i-it->second > max_so_far.second-max_so_far.first+1) {
+      max_so_far={it->second+1,i};
+    }
+    else m[sum]=i;
+  }
+  return max_so_far;
+}
+
+/*********** circus_tower *************/
+::std::vector<::std::pair<int,int>> circus_tower(::std::vector<::std::pair<int,int>> *vp) {
+  auto &v = *vp;
+  if (v.empty()) return {};
+
+  /**
+   * Idea: sort v by height first, and resolve ties by weight.
+   * The sequence we are looking for must be a subsequence of 
+   * the so-sorted sequence, and more precisely the maximum increasing subsequence.
+   */
+  ::std::sort(v.begin(), v.end(), [](const ::std::pair<int,int> &p1, const ::std::pair<int,int> &p2) {
+      if (p1.first == p2.first && p1.second < p2.second) return true;
+      if (p1.first < p2.first) return true;
+      return false;
+  });
+
+  struct item {    
+    int prev;
+    int length;
+  };
+
+  ::std::vector<item> m(v.size(),{-1,1});
+  int maxidx = 0;
+  for (int i=0; i<v.size(); ++i) {
+    for (int j=0; j<i; ++j) {
+      if (v[j].second < v[i].second && m[i].length < m[j].length+1) {
+	m[i]={j,m[j].length+1};	
+      }
+    }
+    maxidx=m[i].length>m[maxidx].length?i:maxidx;
+  }
+
+ ::std::vector<::std::pair<int,int>> result(m[maxidx].length);
+ for (int i=result.size()-1, j=maxidx; i>=0; --i, j=m[j].prev) result[i]=v[j];
+ return result;
+}
 
 } // array
 } // algorithms
