@@ -209,6 +209,21 @@ TEST(array,circus_tower_test) {
   }
 }
 
+TEST(array,total_fruit_test) {
+  using testcase = ::std::pair<::std::vector<int>,int>;
+  ::std::vector<testcase> testcases = {
+    {{},0},
+    {{2},1},
+    {{1,2,1},3},
+    {{0,1,2,2},3},
+    {{1,2,3,2,2},4},
+    {{3,3,3,1,2,1,1,2,3,3,4},5}
+  };
+  for (auto &[v, r] : testcases) {
+    ASSERT_EQ(r, array::total_fruit(v));
+  }
+}
+
 
 } // tests
 } // algorithms

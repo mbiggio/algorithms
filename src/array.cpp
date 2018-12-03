@@ -4,6 +4,7 @@
 #include <random>
 #include <numeric>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace algorithms {
 namespace array {
@@ -441,6 +442,24 @@ int search_rotated(const ::std::vector<int> &v, int t) {
  ::std::vector<::std::pair<int,int>> result(m[maxidx].length);
  for (int i=result.size()-1, j=maxidx; i>=0; --i, j=m[j].prev) result[i]=v[j];
  return result;
+}
+
+/*********** total_fruit *************/
+int total_fruit(const ::std::vector<int> &v) {
+  if (v.empty()) return 0;
+  int tot=1, idx=0, ret=1;
+  ::std::unordered_set<int> s{v[0]};
+  for (int i=1; i<v.size(); ++i) {
+    if (v[i]!=v[i-1]) {
+      if (s.count(v[i])) ++tot;
+      else if (s.size()==1) {s.insert(v[i]); ++tot;}
+      else {s={v[i],v[i-1]}; tot=i-idx+1;}
+      idx=i;
+    }
+    else ++tot;
+    ret=::std::max(ret,tot);
+  }
+  return ret;  
 }
 
 } // array
