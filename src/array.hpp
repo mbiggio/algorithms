@@ -240,10 +240,26 @@ int search_rotated(const ::std::vector<int> &v, int t);
  * then back to step 1, then step 2, and so on until you stop.
  * You have two baskets, and each basket can carry any quantity of fruit, 
  * but you want each basket to only carry one type of fruit each.
- * What is the total amount of fruit you can collect with this procedure?
+ * What is the total amount of fruit you can collect with this procedure?a
+ * Runtime complexity : O(n)
  */
 int total_fruit(const ::std::vector<int> &v);
 
+/**
+ * A majority element is an element 
+ * that makes up more than half of the items in an array. 
+ * Given a positive integers array, find the majority element. 
+ * If there is no majority element, return -1. 
+ * Runtime complexity : O(n)
+ */
+int majority_element(const ::std::vector<int> &v);
+
+/**
+ * Given an integer array of size n, 
+ * find all elements that appear more than n/3 times.
+ * Runtime complexity : O(n)
+ */
+::std::vector<int> majority_element_ii(const ::std::vector<int> &v);
 } // array
 } // algorithms
 

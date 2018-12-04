@@ -5,6 +5,7 @@
 #include <numeric>
 #include <unordered_map>
 #include <unordered_set>
+#include <stack>
 
 namespace algorithms {
 namespace array {
@@ -460,6 +461,79 @@ int total_fruit(const ::std::vector<int> &v) {
     ret=::std::max(ret,tot);
   }
   return ret;  
+}
+
+/*********** majority_element *************/
+int majority_element(const ::std::vector<int> &v) {
+
+  /*
+   * Let x be the majority element, 
+   * and let i and j two indices in v such that v[i]!=v[j].
+   * Then x is also the majority element of vector w, 
+   * obtained from v by removing indices i and j.
+   * The algorithm is keeps annihilating different 
+   * elements as we see them, keeping the candidate
+   * to be the majority element. 
+   * It then verifies that it is indeed the majority element.
+   * Example: [1,2,5,9,5,9,5,5,5]
+   *
+   *  | | | | | | | | |5|
+   *  | | | | | | | |5|5|
+   *  |1|_|5|_|5|_|5|5|5|
+   *
+   * Result = 5
+   *
+   */
+
+  ::std::stack<::std::pair<int,int>> s;
+  for (int i=0; i<v.size(); ++i) {
+    if(s.empty()) s.emplace(v[i],1);
+    else if(s.top().first==v[i]) ++s.top().second;
+    else if(--s.top().second==0) s.pop();
+  }
+
+  if (s.empty()) return -1;
+  int cand = s.top().first;
+  int count = 0;
+  ::std::for_each(v.begin(),v.end(),[&](int i){if(i==cand) ++count;});
+  return count>v.size()/2?cand:-1;
+}
+
+/*********** majority_element_ii *************/
+::std::vector<int> majority_element_ii(const ::std::vector<int> &v) {
+
+  /*
+   * There can be at most 2 elements
+   * occurring more than n/3 times.
+   * Removing 3 distinct elements from v
+   * won't change these majority elements, if there
+   * are some. So the approach is similar to 
+   * majority_element.
+   * Example: [1,2,1,2,2,1,5,2,1]
+   *
+   *   |   |   |   |   |  2|1 2|   |  2|1 2|
+   *   |   |   |1  |1 2|1 2|1 2|1 2|1 2|1 2|
+   *   |1,_|1,2|1,2|1,2|1,2|1,2|1,2|1,2|1,2|
+   *
+   * Result = {1,2}
+   */
+
+  ::std::unordered_map<int,int> m;
+  for (int i=0; i<v.size(); ++i) {
+    if (m.size()<=1 || m.count(v[i])) ++m[v[i]];
+    else {
+      for (auto it=m.begin(); it!=m.end();) {
+	if(--it->second==0) it=m.erase(it);
+	else ++it;
+      }
+    }
+  }
+
+  ::std::unordered_map<int,int> c;
+  for (auto n:v) if (m.count(n)) ++c[n];
+  ::std::vector<int> result;
+  for (auto p:c) if (p.second>v.size()/3) result.emplace_back(p.first);
+  return result;
 }
 
 } // array
