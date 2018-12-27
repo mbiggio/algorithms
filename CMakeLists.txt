@@ -8,6 +8,7 @@ set(SRC
   src/array.cpp
   src/string.cpp
   src/dp.cpp
+  src/graph.cpp
   src/math.cpp)
 set(TEST
   test/main.cpp
@@ -15,6 +16,7 @@ set(TEST
   test/array_tests.cpp
   test/string_tests.cpp
   test/dp_tests.cpp
+  test/graph_tests.cpp
   test/math_tests.cpp)
 
 # the executable target for the unit-tests
