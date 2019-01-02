@@ -6,7 +6,7 @@
 namespace algorithms {
 namespace tests {
 
-TEST(string,is_palyndrome) {
+TEST(string,is_palyndrome_test) {
   using testcase = ::std::pair<::std::string, bool>;
   ::std::vector<testcase> testcases = {
     {"",true},
@@ -24,7 +24,7 @@ TEST(string,is_palyndrome) {
   }
 }
 
-TEST(string,string_to_int) {
+TEST(string,string_to_int_test) {
   using testcase = ::std::pair<::std::string, int>;
   ::std::vector<testcase> testcases = {
     {"",0},
@@ -43,7 +43,7 @@ TEST(string,string_to_int) {
   }
 }
 
-TEST(string,int_to_string) {
+TEST(string,int_to_string_test) {
   using testcase = ::std::pair<int,::std::string>;
   ::std::vector<testcase> testcases = {
     {0,"0"},
@@ -59,7 +59,7 @@ TEST(string,int_to_string) {
   }
 }
 
-TEST(string,reverse_words) {
+TEST(string,reverse_words_test) {
   using testcase = ::std::pair<::std::string,::std::string>;
   ::std::vector<testcase> testcases = {
     {"",""},
@@ -143,7 +143,7 @@ TEST(string,search_test) {
   }
 }
 
-TEST(string,word_distance) {
+TEST(string,word_distance_test) {
   using testcase = ::std::tuple<::std::string, ::std::string, ::std::string, int>;
   ::std::vector<testcase> testcases = {
     {"AAA","BBB","AAA",-1},

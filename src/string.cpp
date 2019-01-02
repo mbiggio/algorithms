@@ -1,7 +1,7 @@
 #include "string.hpp"
-#include<algorithm>
-#include<unordered_map>
-#include<sstream>
+#include <algorithm>
+#include <unordered_map>
+#include <sstream>
 
 namespace algorithms {
 namespace string {
